@@ -76,7 +76,7 @@ const AddProduct = () => {
       <div className="px-10 w-[600px] mt-10">
         <h1 className="md:text-2xl text-xl font-bold">Add Product</h1>
 
-        <form onSubmit={handlerSubmit} className="flex flex-col gap-3 mt-10">
+        <form onSubmit={handlerSubmit} className="flex flex-col gap-3 mt-10 mb-10">
           <div className="flex gap-2 items-center ">
             <Label htmlFor="name" className="w-[140px] font-bold">
               Product name :
@@ -136,7 +136,7 @@ const AddProduct = () => {
             <img
               src={addProduct.imageUrl}
               alt=""
-              className="w-[200px] h-[200px]"
+              className="w-[200px] h-[200px] rounded-xl"
             />
             <Label htmlFor="imageUrl">Upload picture</Label>
             <Input

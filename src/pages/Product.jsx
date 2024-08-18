@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button";
 import {
   Table,
   TableBody,
@@ -32,6 +33,11 @@ const Product = () => {
   useEffect(() => {
     getProduct();
   }, []);
+
+  const deleteProduct = async (productId) => {
+    console.log(productId);
+    
+  }
   return (
     <div className="flex flex-col w-[calc(100vw-250px)]">
       <div className="flex flex-col gap-3 px-10 mt-10">
@@ -46,6 +52,7 @@ const Product = () => {
               <TableHead className="w-[150px]">Image</TableHead>
               <TableHead>Name</TableHead>
               <TableHead className="text-right">Price</TableHead>
+              <TableHead className="text-right">Remove</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -60,10 +67,20 @@ const Product = () => {
                     src={item.imageUrl}
                     alt="Product image"
                     className="h-[100px] w-[100px] rounded-md"
+                    loading="lazy"
                   />
                 </TableCell>
                 <TableCell>{item.name}</TableCell>
                 <TableCell className="text-right">{item.price}</TableCell>
+                <TableCell className="text-right">
+                  <Button
+                    onClick={() => {
+                      deleteProduct(item.product_id);
+                    }}
+                  >
+                    Remove
+                  </Button>
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>
