@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 
 const Nav = () => {
   return (
-    <div className="relative flex flex-col items-center w-[250px] h-[100vh] border-2 shadow-md">
+    <div className="sticky flex flex-col items-center w-[250px] h-[100vh] border-2 shadow-md">
       <div className="absolute top-2 left-2">
         <Toggle />
       </div>

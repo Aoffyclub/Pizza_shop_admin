@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+
 
 import {
   Select,
@@ -13,6 +15,7 @@ import {
 } from "@/components/ui/select";
 import toast from "react-hot-toast";
 import axios from "axios";
+import { Button } from "@/components/ui/button";
 
 const AddProduct = () => {
   const [addProduct, setAddproduct] = useState({
@@ -55,16 +58,22 @@ const AddProduct = () => {
         })
         .then((res) => {
           toast.success("Image uploaded successfully");
+          setAddproduct((prevInputs) => ({
+            ...prevInputs,
+            [imageUrl]: res.data.imageUrl,
+          }));
         });
     } catch (error) {
       toast.error("Can't upload image");
     }
   };
 
-  const handlerSubmit = () => {};
+  const handlerSubmit = () => {
+    console.log(addProduct);
+  };
   return (
-    <div className="flex flex-col w-[calc(100vw-250px)] mt-10">
-      <div className="px-10 w-[600px]">
+    <div className="flex flex-col w-[calc(100vw-250px)] h-[100vh] overflow-scroll">
+      <div className="px-10 w-[600px] mt-10">
         <h1 className="md:text-2xl text-xl font-bold">Add Product</h1>
 
         <form onSubmit={handlerSubmit} className="flex flex-col gap-3 mt-10">
@@ -98,11 +107,11 @@ const AddProduct = () => {
             <Label htmlFor="description" className="w-[110px] font-bold">
               Description :
             </Label>
-            <textarea
+            <Textarea
               type="text"
               id="description"
               name="description"
-              className="font-bold h-[300px] text-start dark:bg-[#020817] border-2 w-[calc(100%-110px)] rounded-lg"
+              className="h-[250px]"
               onChange={handlerChange}
               required
             />
@@ -124,7 +133,12 @@ const AddProduct = () => {
             </Select>
           </div>
           <div className="grid w-full max-w-sm items-center gap-2">
-            <Label htmlFor="imageUrl">Picture</Label>
+            <img
+              src={addProduct.imageUrl}
+              alt=""
+              className="w-[200px] h-[200px]"
+            />
+            <Label htmlFor="imageUrl">Upload picture</Label>
             <Input
               id="imageUrl"
               type="file"
@@ -132,6 +146,9 @@ const AddProduct = () => {
               name="imageUrl"
               onChange={handleImage}
             />
+          </div>
+          <div>
+            <Button>Add product</Button>
           </div>
         </form>
       </div>
