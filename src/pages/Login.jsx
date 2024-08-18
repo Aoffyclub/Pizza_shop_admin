@@ -1,16 +1,22 @@
 import bg from "../images/bg_login.png";
+import bg2 from "../images/bg_login2.png";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Toggle from "@/components/Toggle";
 
 import { useState } from "react";
+import { useTheme } from "@/provider/Theme";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [formData, setFormData] = useState({
     username: "",
     password: "",
   });
+
+  const { theme } = useTheme();
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -19,6 +25,7 @@ const Login = () => {
   const login = (e) => {
     e.preventDefault();
     console.log(formData);
+    navigate("/");
   };
   return (
     <div
@@ -27,9 +34,13 @@ const Login = () => {
       <div className="absolute top-2 right-2">
         <Toggle />
       </div>
-      <img src={bg} alt="" className="w-[100%] h-[100%] absolute -z-10" />
+      <img
+        src={theme == "light" ? bg2 : bg}
+        alt=""
+        className="w-[100%] h-[100%] absolute -z-10"
+      />
 
-      <div className="relative flex flex-col gap-5 items-center h-[70%] w-[450px] bg-[#ffffff] dark:bg-[#0808088a] shadow-3xl rounded-3xl">
+      <div className="relative flex flex-col gap-5 items-center h-[70%] w-[450px] bg-[#f5f5f5] dark:bg-[#0808088a] shadow-3xl rounded-3xl">
         <h1 className="text-3xl font-bold mt-10">Pizz admin </h1>
         <form
           onSubmit={login}
