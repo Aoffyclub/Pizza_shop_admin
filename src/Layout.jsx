@@ -7,8 +7,8 @@ const Layout = () => {
   return (
     <div className="flex ">
       <Nav />
-      <Outlet />
       <Toaster />
+      <Outlet />
     </div>
   );
 }

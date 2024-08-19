@@ -11,6 +11,8 @@ import Login from "./pages/Login";
 import AddProduct from "./pages/AddProduct";
 import Order from "./pages/Order";
 
+import { ContextProvider } from "./provider/ContextProviderContext";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -22,7 +24,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/orders",
-        element: <Order/>,
+        element: <Order />,
       },
       {
         path: "/products",
@@ -45,7 +47,9 @@ const router = createBrowserRouter([
 ]);
 
 createRoot(document.getElementById("root")).render(
-  <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-    <RouterProvider router={router} />
+  <ThemeProvider defaultTheme="dark" storageKey="theme">
+    <ContextProvider>
+      <RouterProvider router={router} />
+    </ContextProvider>
   </ThemeProvider>
 );

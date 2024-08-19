@@ -1,8 +1,7 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-
 
 import {
   Select,
@@ -15,7 +14,10 @@ import {
 } from "@/components/ui/select";
 import toast from "react-hot-toast";
 import axios from "axios";
+import { ImageUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { contextProviderContext } from "@/provider/ContextProviderContext";
+import { useNavigate } from "react-router-dom";
 
 const AddProduct = () => {
   const [addProduct, setAddproduct] = useState({
@@ -26,11 +28,21 @@ const AddProduct = () => {
     imageUrl: "",
   });
 
+  const { token } = useContext(contextProviderContext);
+  const navigate = useNavigate();
+
   const handlerChange = (event) => {
     const { name, value } = event.target;
     setAddproduct((prevInputs) => ({
       ...prevInputs,
       [name]: value,
+    }));
+  };
+
+  const changeSelect = (event) => {
+    setAddproduct((prevInputs) => ({
+      ...prevInputs,
+      ["category_id"]: event,
     }));
   };
 
@@ -40,37 +52,60 @@ const AddProduct = () => {
     if (!file) return;
 
     const formData = new FormData();
-    formData.append("profileImage", file);
-    console.log(formData);
+    formData.append("productImage", file);
 
     try {
       await axios
         .request({
           method: "POST",
-          url: import.meta.env.VITE_BASE_API + "/api/upload",
+          url: import.meta.env.VITE_BASE_API + "/api/upload/product",
           headers: {
             "Content-Type": "multipart/form-data",
-            Authorization:
-              "Bearer " +
-              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpYXQiOjE3MjM2OTI2NjMsImV4cCI6MTcyMzc3OTA2M30.hIxgUAHpTTFWN_C6ZvOWFRIiSmMAbjJiGfDcc03jltw",
+            Authorization: "Bearer " + token,
           },
           data: formData,
         })
         .then((res) => {
-          toast.success("Image uploaded successfully");
+          toast.success(res.data.message);
+          console.log(res.data.imageUrl);
+
           setAddproduct((prevInputs) => ({
             ...prevInputs,
-            [imageUrl]: res.data.imageUrl,
+            ["imageUrl"]: res.data.imageUrl,
           }));
+
+          console.log(addProduct);
         });
     } catch (error) {
       toast.error("Can't upload image");
     }
   };
 
-  const handlerSubmit = (e) => {
+  const handlerSubmit = async (e) => {
     e.preventDefault();
-    console.log(addProduct);
+
+    try {
+      await axios
+        .request({
+          method: "POST",
+          url: import.meta.env.VITE_BASE_API + "/api/product",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + token,
+          },
+          data: addProduct,
+        })
+        .then((res) => {
+          toast.success(res.data.message);
+          navigate("/products");
+        });
+    } catch (error) {
+      if (error.response.status == 404 || error.response.status == 400) {
+        toast.error(error.response.data.error);
+      } else {
+        toast.error(error.response.data.error[0]);
+      }
+    }
   };
   return (
     <div className="flex flex-col w-[calc(100vw-250px)] h-[100vh] overflow-scroll">
@@ -121,7 +156,7 @@ const AddProduct = () => {
             />
           </div>
           <div className="flex gap-2 items-center ">
-            <Select>
+            <Select required onValueChange={changeSelect}>
               <SelectTrigger className="w-[180px]">
                 <SelectValue placeholder="Select a size" />
               </SelectTrigger>
@@ -137,11 +172,16 @@ const AddProduct = () => {
             </Select>
           </div>
           <div className="grid w-full max-w-sm items-center gap-2">
-            <img
-              src={addProduct.imageUrl}
-              alt=""
-              className="w-[200px] h-[200px] rounded-xl"
-            />
+            {addProduct.imageUrl ? (
+              <img
+                src={import.meta.env.VITE_BASE_API + addProduct.imageUrl}
+                alt=""
+                className="w-[200px] h-[200px] rounded-xl"
+              />
+            ) : (
+              <ImageUp size={200} strokeWidth={0.5} />
+            )}
+
             <Label htmlFor="imageUrl">Upload picture</Label>
             <Input
               id="imageUrl"

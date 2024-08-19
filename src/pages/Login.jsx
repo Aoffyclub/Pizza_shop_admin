@@ -5,9 +5,12 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Toggle from "@/components/Toggle";
 
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useTheme } from "@/provider/Theme";
 import { useNavigate } from "react-router-dom";
+import { contextProviderContext } from "@/provider/ContextProviderContext";
+import { toast, Toaster } from "react-hot-toast";
+import axios from "axios";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -16,16 +19,38 @@ const Login = () => {
   });
 
   const { theme } = useTheme();
+  const { localToken } = useContext(contextProviderContext);
   const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const login = (e) => {
+  const login = async (e) => {
     e.preventDefault();
-    console.log(formData);
-    navigate("/");
+    try {
+      await axios
+        .request({
+          url: import.meta.env.VITE_BASE_API + "/api/admin/login",
+          method: "POST",
+          data: formData,
+         
+        })
+        .then((res) => {
+          // handle success
+          localToken(res.data.token);
+          toast.success(res.data.message);
+          setTimeout(() => {
+            navigate("/");
+          }, 500);
+        });
+    } catch (error) {
+      if (error.response.status == 404 || error.response.status == 400) {
+        toast.error(error.response.data.error);
+      } else {
+        toast.error(error.response.data.error[0]);
+      }
+    }
   };
   return (
     <div
@@ -85,6 +110,7 @@ const Login = () => {
           </Button>
         </form>
       </div>
+      <Toaster />
     </div>
   );
 };

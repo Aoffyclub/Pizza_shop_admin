@@ -8,9 +8,24 @@ import {
   LogOut,
 } from "lucide-react";
 import Toggle from "./Toggle";
-import { Link } from "react-router-dom";
+import { Link , useNavigate} from "react-router-dom";
+import toast from "react-hot-toast";
+import { contextProviderContext } from "@/provider/ContextProviderContext";
+import { useContext } from "react";
 
 const Nav = () => {
+
+  const { localToken } = useContext(contextProviderContext); 
+  const navigate = useNavigate(); 
+
+  const logOut = () => {
+    toast.success("Logged Out Successfully");
+    localToken(null);
+    setTimeout(() => {
+      navigate("/login");
+    }, 500);
+ 
+  }
   return (
     <div className="sticky flex flex-col items-center w-[250px] h-[100vh] border-2 shadow-md">
       <div className="absolute top-2 left-2">
@@ -51,12 +66,12 @@ const Nav = () => {
             <h1 className="text-lg font-semibold">Customers</h1>
           </div>
         </Link>
-        <Link to={"/login"}>
+        <div onClick={logOut}>
           <div className="flex gap-3 items-center cursor-pointer rounded-md hover:dark:bg-[#554545] hover:bg-[#eee8e8] p-2">
             <LogOut size={23} strokeWidth={1.5} />
             <h1 className="text-lg font-semibold">Log out</h1>
           </div>
-        </Link>
+        </div>
       </div>
     </div>
   );
