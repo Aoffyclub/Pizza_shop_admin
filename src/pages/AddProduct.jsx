@@ -108,7 +108,7 @@ const AddProduct = () => {
     }
   };
   return (
-    <div className="flex flex-col w-[calc(100vw-250px)] h-[100vh] overflow-scroll">
+    <div className="flex flex-col w-[calc(100vw-250px)] h-[100vh] overflow-scroll no-scrollbar">
       <div className="px-10 w-[600px] mt-10">
         <h1 className="md:text-2xl text-xl font-bold">Add Product</h1>
 
@@ -171,7 +171,7 @@ const AddProduct = () => {
               </SelectContent>
             </Select>
           </div>
-          <div className="grid w-full max-w-sm items-center gap-2">
+          <div className="flex flex-col w-[100%] items-center justify-center gap-4">
             {addProduct.imageUrl ? (
               <img
                 src={import.meta.env.VITE_BASE_API + addProduct.imageUrl}
@@ -192,7 +192,11 @@ const AddProduct = () => {
             />
           </div>
           <div>
-            <Button variant="outline" type="submit">
+            <Button
+              variant="outline"
+              type="submit"
+              className="mt-10 text-xl font-bold"
+            >
               Add product
             </Button>
           </div>
