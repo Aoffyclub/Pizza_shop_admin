@@ -61,8 +61,8 @@ const Product = () => {
     }
   };
   return (
-    <div className="flex flex-col w-[calc(100vw-250px)]">
-      <div className="flex flex-col gap-3 px-10 mt-10">
+    <div className="flex flex-col w-full md:w-[calc(100vw-250px)]">
+      <div className="flex flex-col gap-3 md:px-10 px-4 md:mt-10 pb-5">
         <h1 className="md:text-2xl text-xl font-bold">Products</h1>
 
         <Table>
@@ -88,7 +88,7 @@ const Product = () => {
                   <img
                     src={import.meta.env.VITE_BASE_API + item.imageUrl}
                     alt="Product image"
-                    className="h-[100px] w-[100px] rounded-md"
+                    className="md:h-[100px] md:w-[100px] rounded-md"
                     loading="lazy"
                   />
                 </TableCell>

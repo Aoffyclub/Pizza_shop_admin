@@ -108,15 +108,14 @@ const AddProduct = () => {
     }
   };
   return (
-    <div className="flex flex-col w-[calc(100vw-250px)] h-[100vh] overflow-scroll no-scrollbar">
-      <div className="px-10 w-[600px] mt-10">
+    <div className="flex flex-col w-full md:w-[calc(100vw-250px)] h-[100vh] overflow-scroll no-scrollbar">
+      <div className="md:px-10 px-4 md:w-[600px] md:mt-10 pb-5">
         <h1 className="md:text-2xl text-xl font-bold">Add Product</h1>
-
         <form
           onSubmit={handlerSubmit}
           className="flex flex-col gap-3 mt-10 mb-10"
         >
-          <div className="flex gap-2 items-center ">
+          <div className="flex gap-2 md:items-center md:flex-row flex-col ">
             <Label htmlFor="name" className="w-[140px] font-bold">
               Product name :
             </Label>
@@ -129,7 +128,7 @@ const AddProduct = () => {
               required
             />
           </div>
-          <div className="flex gap-2 items-center ">
+          <div className="flex gap-2 md:items-center md:flex-row flex-col ">
             <Label htmlFor="price" className="w-[140px] font-bold">
               Price :
             </Label>
@@ -142,7 +141,7 @@ const AddProduct = () => {
               required
             />
           </div>
-          <div className="flex gap-2 items-center ">
+          <div className="flex gap-2 items-centermd:flex-row flex-col  ">
             <Label htmlFor="description" className="w-[110px] font-bold">
               Description :
             </Label>
@@ -171,18 +170,18 @@ const AddProduct = () => {
               </SelectContent>
             </Select>
           </div>
-          <div className="flex flex-col w-[100%] items-center justify-center gap-4">
+          <div className="flex flex-col w-[100%] md:items-center justify-center gap-4">
             {addProduct.imageUrl ? (
               <img
                 src={import.meta.env.VITE_BASE_API + addProduct.imageUrl}
                 alt=""
-                className="w-[200px] h-[200px] rounded-xl"
+                className="md:w-[200px] md:h-[200px] w-[100%] h-[100%] rounded-xl"
               />
             ) : (
-              <ImageUp size={200} strokeWidth={0.5} />
+              <ImageUp size={250} strokeWidth={0.5} />
             )}
 
-            <Label htmlFor="imageUrl">Upload picture</Label>
+            <Label htmlFor="imageUrl"  className="font-bold">Upload picture</Label>
             <Input
               id="imageUrl"
               type="file"

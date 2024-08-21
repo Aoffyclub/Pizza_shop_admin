@@ -5,7 +5,6 @@ import { useContext, useEffect, useState } from "react";
 import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
   TableHead,
   TableHeader,
@@ -40,8 +39,8 @@ const Customer = () => {
     getCustomers();
   }, []);
   return (
-    <div className="flex flex-col w-[calc(100vw-250px)]">
-      <div className="flex flex-col gap-3 px-10 mt-10">
+    <div className="flex flex-col w-full md:w-[calc(100vw-250px)]">
+      <div className="flex flex-col gap-3 md:px-10 px-4 md:mt-10 pb-5">
         <h1 className="md:text-2xl text-xl font-bold">All users</h1>
         <Table>
           {/* <TableCaption>A list of your recent invoices.</TableCaption> */}
