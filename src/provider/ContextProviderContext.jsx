@@ -1,8 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 
-
 const contextProviderContext = createContext();
-
 
 const ContextProvider = ({ children }) => {
   const [token, setToken] = useState(localStorage.getItem("token"));
@@ -18,8 +16,9 @@ const ContextProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    if (token == null && window.location.pathname !== "/login") {
-      window.location.href = "/login";
+    const baseLoginPath = `${import.meta.env.VITE_BASE_URL || ""}login`;
+    if (!token && window.location.pathname !== baseLoginPath) {
+      window.location.href = baseLoginPath;
     }
   }, [token]);
   return (

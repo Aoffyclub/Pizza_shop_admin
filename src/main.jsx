@@ -13,38 +13,41 @@ import Order from "./pages/Order";
 
 import { ContextProvider } from "./provider/ContextProviderContext";
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Layout />,
-    children: [
-      {
-        index: true,
-        element: <Home />,
-      },
-      {
-        path: "/orders",
-        element: <Order />,
-      },
-      {
-        path: "/products",
-        element: <Product />,
-      },
-      {
-        path: "/addproducts",
-        element: <AddProduct />,
-      },
-      {
-        path: "/customers",
-        element: <Customer />,
-      },
-    ],
-  },
-  {
-    path: "/login",
-    element: <Login />,
-  },
-]);
+const router = createBrowserRouter(
+  [
+    {
+      path: "/",
+      element: <Layout />,
+      children: [
+        {
+          index: true,
+          element: <Home />,
+        },
+        {
+          path: "/orders",
+          element: <Order />,
+        },
+        {
+          path: "/products",
+          element: <Product />,
+        },
+        {
+          path: "/addproducts",
+          element: <AddProduct />,
+        },
+        {
+          path: "/customers",
+          element: <Customer />,
+        },
+      ],
+    },
+    {
+      path: "/login",
+      element: <Login />,
+    },
+  ],
+  { basename: import.meta.env.VITE_BASE_URL }
+);
 
 createRoot(document.getElementById("root")).render(
   <ThemeProvider defaultTheme="dark" storageKey="theme">

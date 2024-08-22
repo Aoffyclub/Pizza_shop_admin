@@ -65,7 +65,7 @@ const Order = () => {
                   {order.address_id}
                 </TableCell>
                 <TableCell className="text-center">
-                  {order.totalPrice}
+                  {order.totalPrice.toLocaleString()}
                 </TableCell>
                 <TableCell className="text-right">
                   {order.status.toUpperCase()}
