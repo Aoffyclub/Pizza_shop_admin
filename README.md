@@ -1,31 +1,31 @@
 
-# 🍕 Pizza Shop
+# 🍕 Pizza Shop Admin
 
-This is the frontend client for the Pizza Shop web application, built with Vite and React. It provides an intuitive user interface for browsing the menu, placing orders, and managing user accounts. Demo : http://45.154.26.220/pizza/
+This is the admin panel for the Pizza Shop web application, built with Vite and React. It allows administrators to manage the menu, orders, users, and other settings. Demo : http://45.154.26.220/pizzaAdmin/
 
 ## 🛠️ Features
 
-- Browse pizza menu with various options.
-- User authentication (login and registration).
-- Add items to the cart and place orders.
-- View and manage user profiles.
-- Responsive design for a seamless experience across devices.
+- Manage pizza menu items (add, edit, delete).
+- View and process customer orders.
+- Manage user accounts and roles.
+- Dashboard with key statistics.
+- Secure login for administrators.
 
 ## 🚀 Technologies Used
 
-- ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB) : For building the user interface.
-- ![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=FFD62E) : As the build tool for fast development.
-- ![Axios](https://img.shields.io/badge/Axios-5A29E4?style=for-the-badge&logo=axios&logoColor=white) : For making API requests.
-- ![React Router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white) : For routing within the application.
-- ![Context API](https://img.shields.io/badge/Context_API-007ACC?style=for-the-badge&logo=react&logoColor=white) : For managing global state.
+- ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB) **React**: For building the user interface.
+- ![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=FFD62E) **Vite**: As the build tool for fast development.
+- ![Axios](https://img.shields.io/badge/Axios-5A29E4?style=for-the-badge&logo=axios&logoColor=white) **Axios**: For making API requests.
+- ![React Router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white) **React Router**: For routing within the application.
+- ![Context API](https://img.shields.io/badge/Context_API-007ACC?style=for-the-badge&logo=react&logoColor=white) **Context API**: For managing global state.
 
 ## ⚙️ Installation and Setup
 
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/Aoffyclub/Pizza_shop_client.git
-   cd Pizza_shop_client
+   git clone https://github.com/Aoffyclub/Pizza_shop_admin.git
+   cd Pizza_shop_admin
    ```
 
 2. **Install dependencies:**
@@ -55,17 +55,17 @@ This is the frontend client for the Pizza Shop web application, built with Vite 
 
 ## 📝 Usage
 
-- **Navigating the Menu**: Browse the list of available pizzas and customize your order.
-- **User Authentication**: Sign up for a new account or log in to an existing one.
-- **Placing an Order**: Add items to your cart and proceed to checkout.
-- **Managing Profile**: View and update your user information.
+- **Managing Menu**: Add, edit, or remove pizza items from the menu.
+- **Order Processing**: View and update the status of customer orders.
+- **User Management**: Manage user accounts, including roles and permissions.
+- **Dashboard**: View key statistics and metrics related to the shop’s operations.
 
 ## 📂 Project Structure
 
 The project structure is organized as follows:
 
 ```
-Pizza_shop_client/
+Pizza_shop_admin/
 ├── public/               # Static assets
 ├── src/
 │   ├── assets/           # Images, icons, etc.
