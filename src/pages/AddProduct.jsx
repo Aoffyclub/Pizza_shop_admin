@@ -157,15 +157,16 @@ const AddProduct = () => {
           <div className="flex gap-2 items-center ">
             <Select required onValueChange={changeSelect}>
               <SelectTrigger className="w-[180px]">
-                <SelectValue placeholder="Select a size" />
+                <SelectValue placeholder="Select a category" />
               </SelectTrigger>
               <SelectContent>
                 <SelectGroup>
                   <SelectLabel>Size</SelectLabel>
-                  <SelectItem value="small">Small</SelectItem>
-                  <SelectItem value="medium">Medium</SelectItem>
-                  <SelectItem value="large">Large</SelectItem>
-                  <SelectItem value="extraLarge">Extra Large</SelectItem>
+                  <SelectItem value="pizza">Pizza</SelectItem>
+                  <SelectItem value="drink">Drink</SelectItem>
+                  <SelectItem value="dessert">Dessert</SelectItem>
+                  <SelectItem value="steak">Steak</SelectItem>
+                  <SelectItem value="pasta">Pasta</SelectItem>
                 </SelectGroup>
               </SelectContent>
             </Select>
@@ -181,7 +182,9 @@ const AddProduct = () => {
               <ImageUp size={250} strokeWidth={0.5} />
             )}
 
-            <Label htmlFor="imageUrl"  className="font-bold">Upload picture</Label>
+            <Label htmlFor="imageUrl" className="font-bold">
+              Upload picture
+            </Label>
             <Input
               id="imageUrl"
               type="file"
