@@ -108,8 +108,8 @@ const AddProduct = () => {
     }
   };
   return (
-    <div className="flex flex-col w-full md:w-[calc(100vw-250px)] h-[100vh] overflow-scroll no-scrollbar">
-      <div className="md:px-10 px-4 md:w-[600px] md:mt-10 pb-5">
+    <div className="flex flex-col w-full md:w-[calc(100vw-250px)] md:h-[100vh] overflow-scroll no-scrollbar">
+      <div className="md:px-10 px-4 md:w-[600px] md:mt-10 mt-[60px] pb-5">
         <h1 className="md:text-2xl text-xl font-bold">Add Product</h1>
         <form
           onSubmit={handlerSubmit}

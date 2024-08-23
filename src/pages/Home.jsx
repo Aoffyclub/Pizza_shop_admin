@@ -40,8 +40,8 @@ const Home = () => {
   };
 
   return (
-    <div className="flex flex-col w-full md:w-[calc(100vw-250px)]">
-      <div className="flex flex-col gap-3 md:px-10 px-4 md:mt-10 pb-5">
+    <div className="flex flex-col w-full md:w-[calc(100vw-250px)] md:h-[100vh] overflow-scroll no-scrollbar">
+      <div className="flex flex-col gap-3 md:px-10 px-4 md:mt-10 mt-[60px] pb-5">
         <h1 className="md:text-2xl text-xl font-bold">Report Data</h1>
         <div className="grid md:grid-cols-3 grid-cols-1 gap-5 mt-5">
           <div className="flex items-center gap-4 h-[120px] border-2 rounded-xl shadow-md p-4">

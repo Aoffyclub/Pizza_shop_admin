@@ -1,4 +1,6 @@
 import icons from "../images/pizza.png";
+import pizzalogo from "../images/pizza_logo.png";
+
 import {
   House,
   ShoppingBasket,
@@ -22,6 +24,7 @@ import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { contextProviderContext } from "@/provider/ContextProviderContext";
 import { useContext, useState } from "react";
+
 
 
 const Nav = () => {
@@ -68,43 +71,52 @@ const Nav = () => {
   return (
     <div>
       {/* Mobile nav */}
-      <div className="sticky w-[full] h-[40px] flex items-center justify-end md:hidden pr-2 gap-2 ">
-        <Sheet open={open} onOpenChange={setOpen}>
-          <SheetTrigger onClick={() => setOpen(true)}><Menu size={23} strokeWidth={1.5} /></SheetTrigger>
-          <SheetContent>
-            <SheetHeader>
-              <SheetDescription>
-                <div className="mt-5">
-                  {menuData.map((data) => (
-                    <Link to={data.link}>
+      <div className="fixed w-[100%] h-[50px] px-2 flex items-center justify-between md:hidden gap-2 shadow-lg backdrop-blur-sm  dark:bg-[#020817] dark:border-b-[1px] z-10">
+        <div className="sm:hidden h-[45px] w-[45px]">
+          <Link to={"/"}>
+            <img src={pizzalogo} alt="" className="w-[100%] h-[100%] " />
+          </Link>
+        </div>
+        <div className="flex items-center gap-1">
+          <Sheet open={open} onOpenChange={setOpen}>
+            <SheetTrigger onClick={() => setOpen(true)}>
+              <Menu size={23} strokeWidth={1.5} />
+            </SheetTrigger>
+            <SheetContent>
+              <SheetHeader>
+                <SheetDescription>
+                  <div className="mt-5">
+                    {menuData.map((data) => (
+                      <Link to={data.link}>
+                        <div
+                          onClick={() => setOpen(false)}
+                          className="flex gap-3 items-center cursor-pointer rounded-md hover:dark:bg-[#554545] hover:bg-[#eee8e8] p-2"
+                        >
+                          {data.icon}
+                          <h1 className="text-lg font-semibold">{data.name}</h1>
+                        </div>
+                      </Link>
+                    ))}
+
+                    <div onClick={logOut}>
                       <div
                         onClick={() => setOpen(false)}
                         className="flex gap-3 items-center cursor-pointer rounded-md hover:dark:bg-[#554545] hover:bg-[#eee8e8] p-2"
                       >
-                        {data.icon}
-                        <h1 className="text-lg font-semibold">{data.name}</h1>
+                        <LogOut size={23} strokeWidth={1.5} />
+                        <h1 className="text-lg font-semibold">Log out</h1>
                       </div>
-                    </Link>
-                  ))}
-
-                  <div onClick={logOut}>
-                    <div
-                      onClick={() => setOpen(false)}
-                      className="flex gap-3 items-center cursor-pointer rounded-md hover:dark:bg-[#554545] hover:bg-[#eee8e8] p-2"
-                    >
-                      <LogOut size={23} strokeWidth={1.5} />
-                      <h1 className="text-lg font-semibold">Log out</h1>
                     </div>
                   </div>
-                </div>
-              </SheetDescription>
-            </SheetHeader>
-          </SheetContent>
-        </Sheet>
-        <Toggle />
+                </SheetDescription>
+              </SheetHeader>
+            </SheetContent>
+          </Sheet>
+          <Toggle />
+        </div>
       </div>
       {/* Destop nav */}
-      <div className="sticky flex-col items-center w-[250px] h-[100vh] border-2 shadow-md md:flex hidden">
+      <div className="sticky flex-col items-center h-[100vh] w-[250px]  border-2 shadow-md md:flex hidden">
         <div className="absolute top-2 left-2">
           <Toggle />
         </div>

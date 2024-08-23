@@ -65,7 +65,7 @@ const Login = () => {
         className="w-[100%] h-[100%] absolute -z-10"
       />
 
-      <div className="relative flex flex-col gap-5 items-center h-[70%] sm:w-[450px] w-[90%]  bg-[#f5f5f5] dark:bg-[#0808088a] shadow-3xl rounded-3xl">
+      <div className="relative flex flex-col gap-5 items-center h-[70%] sm:w-[450px] w-[90%] bg-[#f5f5f5] dark:bg-[#0808088a] shadow-3xl rounded-3xl">
         <h1 className="text-3xl font-bold mt-10">Pizza admin </h1>
         <form
           onSubmit={login}
