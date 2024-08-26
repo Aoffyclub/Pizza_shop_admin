@@ -1,7 +1,7 @@
 
 # 🍕 Pizza Shop Admin
 
-This is the admin panel for the Pizza Shop web application, built with Vite and React. It allows administrators to manage the menu, orders, users, and other settings. Demo : http://45.154.26.220/pizzaAdmin/
+This is the admin panel for the Pizza Shop web application, built with Vite and React. It allows administrators to manage the menu, orders, users, and other settings. Demo : https://aoffydev.online/pizzaAdmin/
 
 ## 🛠️ Features
 
